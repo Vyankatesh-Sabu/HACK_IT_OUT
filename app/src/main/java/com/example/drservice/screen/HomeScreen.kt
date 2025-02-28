@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -54,12 +55,24 @@ fun HomeScreen(navController: NavController){
             verticalArrangement = Arrangement.Center
         ) {
 
-            TextField(value = link, onValueChange = {newLink->
-                link = newLink
+            TextField(value = link, onValueChange = {
+                link = it
             },shape = RoundedCornerShape(16.dp),
                 placeholder = { Text("Paste your Link here !") },
                 modifier = Modifier.fillMaxWidth()
             )
+            Row {
+                Button(onClick = { /*TODO*/ },modifier = Modifier.padding(top = 20.dp)) {
+                    Text("Analyze")
+                }
+
+                Button(onClick = { /*TODO*/ },modifier = Modifier.padding(top = 20.dp)) {
+                    Text("Analyze")
+                }
+                Button(onClick = { /*TODO*/ },modifier = Modifier.padding(top = 20.dp)) {
+                    Text("Analyze")
+                }
+            }
         }
     }
 
