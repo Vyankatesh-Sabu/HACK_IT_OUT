@@ -42,6 +42,7 @@ android {
 
 dependencies {
     val nav_version = "2.8.7"
+    val lottieVersion = "6.6.2"
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
@@ -61,6 +62,8 @@ dependencies {
 
     // JSON serialization library, works with the Kotlin serialization plugin
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
+    implementation("com.airbnb.android:lottie-compose:6.0.0")
 
 
     implementation(libs.androidx.core.ktx)
