@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.drservice.R
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun signUp() {
     var email :String by rememberSaveable { mutableStateOf("") }
@@ -54,16 +54,16 @@ fun signUp() {
 
         Spacer(Modifier.height(8.dp))
 
-        OutlinedTextField(value = email, onValueChange = {newemail->
-            email = newemail
+        OutlinedTextField(value = email, onValueChange = {
+            email = it
         }, label = {
             Text("Email address")
         })
 
         Spacer(Modifier.height(8.dp))
 
-        OutlinedTextField(value = pass, onValueChange = {newpass->
-            pass = newpass
+        OutlinedTextField(value = pass, onValueChange = {
+            pass = it
         }, label = {
             Text("Password")
         }, visualTransformation = PasswordVisualTransformation(),
