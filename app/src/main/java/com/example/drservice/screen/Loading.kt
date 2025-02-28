@@ -5,6 +5,6 @@ import androidx.compose.foundation.layout.Column
 
 fun Loading(){
     Column {
-        Image()
+
     }
 }
