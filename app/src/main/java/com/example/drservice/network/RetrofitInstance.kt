@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitInstance {
 //    private const val BASE_URL = "https://hackitout-backend.onrender.com"
-//    private const val BASE_URL = "http://192.168.155.33:8000"
-    private const val BASE_URL = "https://l2nc0pxn-8000.inc1.devtunnels.ms"
+    private const val BASE_URL = "http://192.168.155.33:8000"
+//    private const val BASE_URL = "https://l2nc0pxn-8000.inc1.devtunnels.ms"
 //    private val retrofit by lazy {
 //        Retrofit.Builder()
 //            .baseUrl("https://hackitout-backend.onrender.com") // Use your API base URL
@@ -21,9 +21,9 @@ object RetrofitInstance {
 
 //    val api: ApiService by lazy { retrofit.create(ApiService::class.java) }
 private val client = OkHttpClient.Builder()
-    .connectTimeout(30, TimeUnit.SECONDS)
-    .readTimeout(30, TimeUnit.SECONDS)
-    .writeTimeout(30, TimeUnit.SECONDS)
+    .connectTimeout(120, TimeUnit.SECONDS)
+    .readTimeout(120, TimeUnit.SECONDS)
+    .writeTimeout(120, TimeUnit.SECONDS)
     .build()
 
     val api: ApiService by lazy {

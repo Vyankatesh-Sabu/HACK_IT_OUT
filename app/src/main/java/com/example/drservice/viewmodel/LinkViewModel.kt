@@ -25,8 +25,15 @@ class LinkViewModel : ViewModel() {
     private val _output = MutableStateFlow<String?>(null)
     val output = _output.asStateFlow()
 
+    private val _selectedOption = MutableStateFlow<String?>(null)  // Added selectedOption
+    val selectedOption = _selectedOption.asStateFlow()
+
     fun updateLink(newLink: String) {
         _link.value = newLink
+    }
+
+    fun updateOption(option: String) {  // Added updateOption function
+        _selectedOption.value = option
     }
 
     fun sendLink() {
@@ -35,7 +42,7 @@ class LinkViewModel : ViewModel() {
 
             viewModelScope.launch {
                 try {
-                    val response = RetrofitInstance.api.sendLink(_link.value)
+                    val response = RetrofitInstance.api.sendLink(_link.value, _selectedOption.value ?: "sentiment")
 
                     if (response.isSuccessful) {
                         _output.value = response.body()?.toString() ?: "No response"

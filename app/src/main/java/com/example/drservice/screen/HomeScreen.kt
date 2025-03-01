@@ -1,5 +1,6 @@
 package com.example.drservice.screen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -41,8 +43,8 @@ import com.example.drservice.viewmodel.LinkViewModel
 fun HomeScreen(viewModel: LinkViewModel, navController: NavController, sharedText: String?) {
     var linkText by remember { mutableStateOf(TextFieldValue("")) }
     val output by viewModel.output.collectAsState()
-    val options = listOf("Sentiment","Emotion","Summary")
-    var selectedOption by remember { mutableStateOf<String?>(null) }
+    val options = listOf("sentiment","emotion","summary")
+    val selectedOption by viewModel.selectedOption.collectAsState()
     var link by rememberSaveable { mutableStateOf("") }
 
     linkText = sharedText?.let { TextFieldValue(it) } ?: linkText
@@ -78,15 +80,17 @@ fun HomeScreen(viewModel: LinkViewModel, navController: NavController, sharedTex
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                options.forEach { option ->
+                options.forEachIndexed { index,option ->
                     Box(
                         modifier = Modifier
                             .weight(1f)
                             .background(
-                                if (selectedOption == option) MaterialTheme.colorScheme.primary else Color.Gray.copy(alpha = 0.2f),
+                                if (selectedOption == option) MaterialTheme.colorScheme.primary else Color.Gray.copy(
+                                    alpha = 0.2f
+                                ),
                                 shape = RoundedCornerShape(8.dp)
                             )
-                            .clickable { selectedOption = option }
+                            .clickable { viewModel.updateOption(option) }
                             .padding(vertical = 12.dp),
                         contentAlignment = Alignment.Center
                     ) {
@@ -95,6 +99,9 @@ fun HomeScreen(viewModel: LinkViewModel, navController: NavController, sharedTex
                             color = if (selectedOption == option) Color.White else Color.Black,
                             style = MaterialTheme.typography.bodyLarge
                         )
+                    }
+                    if (index < options.size - 1) {
+                        Spacer(modifier = Modifier.width(8.dp))  // Add spacer between options
                     }
                 }
             }
@@ -110,7 +117,9 @@ fun HomeScreen(viewModel: LinkViewModel, navController: NavController, sharedTex
             }
 
             output?.let {
+                Log.d("HomeScreen", "Output: $it")
                 Text(text = it, style = MaterialTheme.typography.bodyLarge)
+
             }
 
 

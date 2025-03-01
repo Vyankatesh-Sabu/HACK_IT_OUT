@@ -29,5 +29,5 @@ interface ApiService {
     suspend fun getProtectedData(@Body request: AuthRequest): ProtectedResponse
 
     @GET("api/user/comments")
-    suspend fun sendLink(@Query("url") link: String): retrofit2.Response<CommentResponse>
+    suspend fun sendLink(@Query("url") link: String,@Query("option") select :String): retrofit2.Response<CommentResponse>
 }
