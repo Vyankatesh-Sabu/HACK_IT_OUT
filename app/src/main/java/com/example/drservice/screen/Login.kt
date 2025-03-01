@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -50,6 +51,7 @@ import com.example.drservice.R
 import com.example.drservice.SignUp
 import com.example.drservice.*
 import com.example.drservice.viewmodel.AuthViewModel
+
 
 
 @Composable
@@ -111,11 +113,11 @@ fun LoginPage(navController: NavController,viewModel: AuthViewModel){
 
             }
         }
-    authState?.let {result ->
-        result.onSuccess {  navController.navigate(HomeScreen)}
-        result.onFailure { Text("Error: ${it.message}")
-            Log.d(TAG, "LoginPage: $it.message")}
-
+    LaunchedEffect(authState) {
+        authState?.let { result ->
+            result.onSuccess { navController.navigate(HomeScreen) }
+            result.onFailure { Log.d(TAG, "LoginPage: ${it.message}") }
+        }
     }
 
 }

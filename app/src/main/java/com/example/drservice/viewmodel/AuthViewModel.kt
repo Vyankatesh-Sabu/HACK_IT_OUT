@@ -17,10 +17,11 @@ class AuthViewModel(private val context: Context) : ViewModel() {
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            val result = authRepository.login(email, password)
-            _authState.value = result
-            result.onSuccess { Log.d("AuthViewModel", "Login successful: $it") }
-            result.onFailure { Log.e("AuthViewModel", "Login failed", it) }
+            _authState.value = runCatching {
+                kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+                    authRepository.login(email, password).getOrThrow()
+                }
+            }
         }
     }
 

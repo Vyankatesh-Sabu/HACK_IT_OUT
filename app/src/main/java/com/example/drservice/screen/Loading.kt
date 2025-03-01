@@ -27,16 +27,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.airbnb.lottie.compose.LottieConstants
 import com.example.drservice.R
+import com.example.drservice.SummaryScreen
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun Loading() {
+fun Loading(navController: NavController) {
+    LaunchedEffect(Unit) {
+        delay(10000) // Wait for 5 seconds
+        navController.navigate(SummaryScreen)
+    }
 
     val messages = listOf(
         "Processing input...",
@@ -78,8 +85,3 @@ fun Loading() {
     }
 }
 
-@Preview
-@Composable
-fun LoadingPreview() {
-    Loading()
-}

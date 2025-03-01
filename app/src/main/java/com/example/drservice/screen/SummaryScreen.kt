@@ -37,7 +37,7 @@ fun TypewriterText(text: String) {
 
 @Composable
 fun SummaryScreen() {
-    val summary = "This is a dynamically typed summary appearing like ChatGPT."
+    val summary = "Error in getting response! Try after some time."
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.Center,
