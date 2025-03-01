@@ -116,10 +116,14 @@ fun HomeScreen(viewModel: LinkViewModel, navController: NavController, sharedTex
                 Text("Send Link")
             }
 
-            output?.let {
-                val comments = it.substringAfter("comments=[").substringBefore("]").replace("\"", "")
-                Log.d("HomeScreen", "$comments")
-                Text(text = "$comments", style = MaterialTheme.typography.bodyLarge)
+            if (output == "Processing...") {
+                Loading(navController)
+            } else {
+                output?.let {
+                    val comments = it.substringAfter("comments=[").substringBefore("]").replace("\"", "")
+                    Log.d("HomeScreen", "$comments")
+                    Text(text = "$comments", style = MaterialTheme.typography.bodyLarge)
+                }
             }
 
 

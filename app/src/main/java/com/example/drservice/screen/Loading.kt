@@ -40,10 +40,10 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun Loading(navController: NavController) {
-    LaunchedEffect(Unit) {
-        delay(10000) // Wait for 5 seconds
-        navController.navigate(SummaryScreen)
-    }
+//    LaunchedEffect(Unit) {
+//        delay(10000) // Wait for 5 seconds
+//        navController.navigate(SummaryScreen)
+//    }
 
     val messages = listOf(
         "Processing input...",
