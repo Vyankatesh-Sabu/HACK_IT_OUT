@@ -117,9 +117,9 @@ fun HomeScreen(viewModel: LinkViewModel, navController: NavController, sharedTex
             }
 
             output?.let {
-                Log.d("HomeScreen", "Output: $it")
-                Text(text = it, style = MaterialTheme.typography.bodyLarge)
-
+                val comments = it.substringAfter("comments=[").substringBefore("]").replace("\"", "")
+                Log.d("HomeScreen", "$comments")
+                Text(text = "$comments", style = MaterialTheme.typography.bodyLarge)
             }
 
 
